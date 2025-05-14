@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState,useEffect } from 'react';
-import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, View, SafeAreaView } from 'react-native';
 import axios from 'axios';
 
 export default function location() {
@@ -36,7 +36,8 @@ export default function location() {
     });
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
 
       <Text style={{textAlign:'center',fontSize:26,fontWeight:600,marginTop:30}}>Enter the Pincode</Text>
       <TextInput
@@ -53,11 +54,16 @@ export default function location() {
       <Text style={{textAlign:'center', fontSize:20,fontWeight:400,marginTop:20}}>City: {city}</Text>
       <Text style={{textAlign:'center', fontSize:20,fontWeight:400,marginTop:20}}>State: {state}</Text>
       <Text style={{textAlign:'center', fontSize:20,fontWeight:400,marginTop:20}}>Country: {country}</Text>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',

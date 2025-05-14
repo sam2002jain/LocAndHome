@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -27,92 +27,98 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="menu" size={24} color="black" />
-        </TouchableOpacity>
-        <View>
-          <Text style={styles.greeting}>Good Evening</Text>
-          <Text style={styles.date}>Tuesday, May 12, 2025</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Ionicons name="menu" size={24} color="black" />
+          </TouchableOpacity>
+          <View>
+            <Text style={styles.greeting}>Good Evening</Text>
+            <Text style={styles.date}>Tuesday, May 12, 2025</Text>
+          </View>
+          <TouchableOpacity style={styles.expertButton}>
+            <Text style={styles.expertButtonText}>Talk to Expert</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.location} onPress={handleLocation}>
+           <Ionicons name="location" size={18} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.expertButton}>
-          <Text style={styles.expertButtonText}>Talk to Expert</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.location} onPress={handleLocation}>
-         <Ionicons name="location" size={18} />
-        </TouchableOpacity>
-      </View>
 
-      <Text style={styles.sectionTitle}>Choose Age Group</Text>
-      <View style={styles.ageGroupContainer}>
-        {ageGroups.map((item, index) => (
-          <TouchableOpacity 
-            key={index}
-            style={[styles.ageGroupCard, { backgroundColor: item.color }]}
-          >
-            <Ionicons name = "football" size={20}/>
-            <Text style={styles.ageGroupText}>{item.age}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+        <Text style={styles.sectionTitle}>Choose Age Group</Text>
+        <View style={styles.ageGroupContainer}>
+          {ageGroups.map((item, index) => (
+            <TouchableOpacity 
+              key={index}
+              style={[styles.ageGroupCard, { backgroundColor: item.color }]}
+            >
+              <Ionicons name = "football" size={20}/>
+              <Text style={styles.ageGroupText}>{item.age}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      <Text style={styles.sectionTitle}>Development Timeline</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.timelineContainer}>
-        {timelineOptions.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[
-              styles.timelineButton,
-              item.active && styles.timelineButtonActive
-            ]}
-          >
-            <Text style={[
-              styles.timelineText,
-              item.active && styles.timelineTextActive
-            ]}>{item.months}</Text>
-          </TouchableOpacity>
-        ))}
+        <Text style={styles.sectionTitle}>Development Timeline</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.timelineContainer}>
+          {timelineOptions.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.timelineButton,
+                item.active && styles.timelineButtonActive
+              ]}
+            >
+              <Text style={[
+                styles.timelineText,
+                item.active && styles.timelineTextActive
+              ]}>{item.months}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        <View style={styles.developmentCards}>
+          <View style={styles.card}>
+            <MaterialCommunityIcons name="book-open-page-variant" size={24} color="#3B82F6" />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Learning Goals</Text>
+              <Text style={styles.cardDescription}>Uses 50+ words and begins forming simple sentences</Text>
+            </View>
+          </View>
+
+          <View style={styles.card}>
+            <FontAwesome5 name="puzzle-piece" size={24} color="#8B5CF6" />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Problem Solving</Text>
+              <Text style={styles.cardDescription}>Completes simple puzzles with assistance</Text>
+            </View>
+          </View>
+
+          <View style={styles.card}>
+            <MaterialCommunityIcons name="account-group" size={24} color="#10B981" />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Social Skills</Text>
+              <Text style={styles.cardDescription}>Shows interest in playing alongside other children</Text>
+            </View>
+          </View>
+
+          <View style={styles.card}>
+            <MaterialCommunityIcons name="heart" size={24} color="#EF4444" />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Emotional Growth</Text>
+              <Text style={styles.cardDescription}>Expresses basic emotions and recognizes others' feelings</Text>
+            </View>
+          </View>
+        </View>
       </ScrollView>
-
-      <View style={styles.developmentCards}>
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="book-open-page-variant" size={24} color="#3B82F6" />
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Learning Goals</Text>
-            <Text style={styles.cardDescription}>Uses 50+ words and begins forming simple sentences</Text>
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          <FontAwesome5 name="puzzle-piece" size={24} color="#8B5CF6" />
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Problem Solving</Text>
-            <Text style={styles.cardDescription}>Completes simple puzzles with assistance</Text>
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="account-group" size={24} color="#10B981" />
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Social Skills</Text>
-            <Text style={styles.cardDescription}>Shows interest in playing alongside other children</Text>
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="heart" size={24} color="#EF4444" />
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Emotional Growth</Text>
-            <Text style={styles.cardDescription}>Expresses basic emotions and recognizes others' feelings</Text>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
